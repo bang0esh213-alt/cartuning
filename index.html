@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NOIR Garage</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -17,6 +22,9 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+img{max-width:100%}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
@@ -204,7 +212,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
-
+</head>
+<body>
 <div class="hero">
   <div class="wrap">
     <nav class="nav" aria-label="Основная навигация">
@@ -543,9 +552,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   add('Здравствуйте! Я отвечу на простые вопросы по сайту: цены, сроки, гарантия, запись.',false);
   function tgl(open){bot.hidden=!open;fab.setAttribute('aria-expanded',String(open));if(open)setTimeout(function(){inp.focus();},50);}
   fab.addEventListener('click',function(){tgl(bot.hidden);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!bot.hidden)tgl(false);});
   document.getElementById('botClose').addEventListener('click',function(){tgl(false);});
   document.getElementById('botForm').addEventListener('submit',function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;inp.value='';ask(v);});
 
   render();
 })();
 </script>
+</body>
+</html>
